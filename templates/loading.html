@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    }
+
+  table {
+  border-collapse: collapse;
+  width: 100%;
+  }
+
+  th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  }
+
+  th {
+  background-color: #f2f2f2;
+  }
+  
+</style>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>Task ID</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>{{ task_id }}</td>
+      <td id="status">{{ status }}</td>
+    </tr>
+  </table>
+
+
+    <script>
+      var finished = 0;
+      function sendStatusUpdate() {
+        var task_id = "{{ task_id }}";
+        var statElement = document.getElementById("status");
+        var stat = statElement.innerHTML;
+
+        if (!stat.includes("reported") && !finished) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/status/" + task_id, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var response = xhr.responseText;
+              var statusElement = document.getElementById("status");
+              statusElement.innerHTML = "Status: " + response;
+              setTimeout(sendStatusUpdate, 2000); // Delay for 2 seconds
+            }
+          };
+          xhr.send(JSON.stringify({ task_id: task_id }));
+        } else {
+          sendResultRequest(task_id);
+        }
+      }
+
+      function sendResultRequest(task_id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/result/" + task_id, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              var response = xhr.responseText;
+              //var statusElement = document.getElementById("status");
+              //statusElement.innerHTML = "Status: " + response;
+              document.write(response);
+              finished = 1;
+            }
+          };
+        xhr.send(JSON.stringify({ 'task_id': task_id }));
+      }
+
+      sendStatusUpdate(); // Send initial request immediately
+    </script>
+
+  </body>
+</html>

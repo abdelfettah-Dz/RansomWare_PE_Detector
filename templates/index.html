@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RansomWare Detection</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 40px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+            width: 250px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            background-color: #4caf50;
+            border: none;
+            color: #fff;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="file"]::-webkit-file-upload-button:hover {
+            background-color: #45a049;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            border: none;
+            color: #fff;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+
+
+        /* Updated Styles */
+        .logo {
+            margin-bottom: 40px;
+        }
+
+        .logo img {
+            max-width: 200px;
+        }
+
+        .description {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .container:before,
+        .container:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .container:after {
+            clear: both;
+        }
+
+        .container:before,
+        .container:after {
+            content: "";
+            display: table;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            input[type="file"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://scontent.falg7-2.fna.fbcdn.net/v/t1.15752-9/348975613_640262774629289_5435946634076757226_n.png?_nc_cat=101&ccb=1-7&_nc_sid=ae9488&_nc_ohc=HEtS9OThBfUAX_nhqKF&_nc_ht=scontent.falg7-2.fna&oh=03_AdS0ai0bw1KMDCOBVzWI_xwACaX-NMKV6zRI7Bkmj6Qpxw&oe=64ACC507" alt="Logo">
+        </div>
+        <h1>Upload a PE file</h1>
+        <div class="description">Detect if a file is a RansomWare</div>
+        <form action="/analyze" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".exe">
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+</body>
+</html>
