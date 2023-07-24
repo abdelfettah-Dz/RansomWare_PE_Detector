@@ -1,40 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-  body {
-    font-family: Arial, sans-serif;
-    }
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
 
-  table {
-  border-collapse: collapse;
-  width: 100%;
-  }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
 
-  th, td {
-  text-align: left;
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-  }
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
 
-  th {
-  background-color: #f2f2f2;
-  }
-  
-</style>
-</head>
-<body>
-  <table>
-    <tr>
-      <th>Task ID</th>
-      <th>Status</th>
-    </tr>
-    <tr>
-      <td>{{ task_id }}</td>
-      <td id="status">{{ status }}</td>
-    </tr>
-  </table>
+      th {
+        background-color: #f2f2f2;
+      }
 
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>Task ID</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>{{ task_id }}</td>
+        <td id="status">{{ status }}</td>
+      </tr>
+    </table>
 
     <script>
       var finished = 0;

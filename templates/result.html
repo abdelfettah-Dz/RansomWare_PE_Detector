@@ -4,12 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Result</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #f5f5f5;
       margin: 0;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
     }
 
     h1 {
@@ -38,17 +47,38 @@
       align-items: center;
       margin-top: 20px;
     }
+
+    .return-link {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #2196f3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .return-link:hover {
+      background-color: #1976d2;
+    }
   </style>
 </head>
 <body>
-  <h1>Result</h1>
-  <p>Result: {{ result }}</p>
-  <div class="icon-container">
-    {% if result == "goodware" %}
-      <i class="safe-icon">Safe</i>
-    {% else %}
-      <i class="danger-icon">Danger</i>
-    {% endif %}
+  <div class="container">
+    <h1>Result</h1>
+    <p>Result: {{ result }}</p>
+
+    <div class="icon-container">
+      {% if result == "goodWare" %}
+        <i class="safe-icon fas fa-check-circle fa-3x"></i>
+      {% else %}
+        <i class="danger-icon fas fa-exclamation-circle fa-3x"></i>
+      {% endif %}
+    </div>
+
+    <a href="/" class="return-link">Return to Homepage</a>
   </div>
+
 </body>
 </html>
