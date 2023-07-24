@@ -56,21 +56,7 @@ def getApi(report):
             api_invocations.append(call['api'])
   except KeyError:
     pass
-# Extract API invocations from network section
-  try:
-    network = report['network']
-    for http_request in network['http']:
-        api_invocations.add(http_request['request']['method'])
-  except KeyError:
-      pass
-# Extract API invocations from procmemory section
-  try:
-    procmemory = report['procmemory']
-    for memory_access in procmemory:
-        if 'api' in memory_access:
-            api_invocations.append(memory_access['api'])
-  except KeyError:
-      pass
+
   # construct and return the API invocations Vector
   return np.array([1 if element in api_invocations else 0 for element in api_variables])
 
